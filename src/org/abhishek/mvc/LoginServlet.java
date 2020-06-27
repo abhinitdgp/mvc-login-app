@@ -1,6 +1,8 @@
 package org.abhishek.mvc;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -31,7 +33,11 @@ public class LoginServlet extends HttpServlet {
 		boolean result = loginService.authenticate(userId, password);
 		if (result) {
 			User user = loginService.getUserDetailss(userId);
-			response.sendRedirect("success.jsp");
+			// request.getSession().setAttribute("user", user);
+			request.setAttribute("user", user);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("success.jsp");
+			dispatcher.forward(request, response);
+			//response.sendRedirect("success.jsp");
 			return;
 		} else {
 			response.sendRedirect("login.jsp");

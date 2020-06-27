@@ -1,4 +1,5 @@
 package org.abhishek.mvc.dto;
+//dto : data transfer object(model)
 
 public class User {
 	private String userId;
