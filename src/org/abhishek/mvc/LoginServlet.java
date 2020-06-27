@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.abhishek.mvc.dto.User;
 import org.abhishek.mvc.service.LoginService;
 
 /**
@@ -29,6 +30,7 @@ public class LoginServlet extends HttpServlet {
 		LoginService loginService = new LoginService();
 		boolean result = loginService.authenticate(userId, password);
 		if (result) {
+			User user = loginService.getUserDetailss(userId);
 			response.sendRedirect("success.jsp");
 			return;
 		} else {
